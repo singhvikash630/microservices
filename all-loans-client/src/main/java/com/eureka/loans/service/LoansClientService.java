@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,11 +16,19 @@ public class LoansClientService {
 	@Autowired
 	RestTemplate restTemplate;
 
+	@Value("${homeloan.get.url}")
+	private String homeLoanUrl;
+
+	@Value("${homeloan.get.url}")
+	private String carLoanUrl;
+
+	@Value("${homeloan.get.url}")
+	private String businessLoanUrl;
+
 	public List<LoanType> getLoans() {
-		LoanType homeLoan = restTemplate.getForObject("http://homeloan-client/homeloan/get/1", LoanType.class);
-		LoanType carloan = restTemplate.getForObject("http://carloan-client/carloan/get/2", LoanType.class);
-		LoanType businessloan = restTemplate.getForObject("http://businessloan-client/businessloan/get/3",
-				LoanType.class);
+		LoanType homeLoan = restTemplate.getForObject(homeLoanUrl, LoanType.class);
+		LoanType carloan = restTemplate.getForObject(carLoanUrl, LoanType.class);
+		LoanType businessloan = restTemplate.getForObject(businessLoanUrl, LoanType.class);
 		return Arrays.asList(homeLoan, carloan, businessloan);
 	}
 
