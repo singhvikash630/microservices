@@ -19,10 +19,10 @@ public class LoansClientService {
 	@Value("${homeloan.get.url}")
 	private String homeLoanUrl;
 
-	@Value("${homeloan.get.url}")
+	@Value("${carloan.get.url}")
 	private String carLoanUrl;
 
-	@Value("${homeloan.get.url}")
+	@Value("${businessloan.get.url}")
 	private String businessLoanUrl;
 
 	public List<LoanType> getLoans() {
